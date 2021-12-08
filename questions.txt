@@ -1,0 +1,21 @@
+/* Question 1 -- Count the number of Saleperson whose name begin with ‘a’/’A’.  */
+SELECT COUNT(Sname) FROM Saleperson WHERE Sname LIKE 'a%';
+
+/* Question 2 -- Display all the Saleperson whose all orders worth is more than Rs. 2000.   */
+SELECT Saleperson.Sname, SUM(Orders.Amt) AS orders_worth FROM SalesPeople
+JOIN Orders ON Orders.Snum=Saleperson.Snum
+GROUP BY Cnum
+HAVING SUM(Amt)>2000;
+GROUP BY Sname
+HAVING SUM(amt) > 2000;
+
+
+/* Queston 3 -- Count the number of Saleperson belonging to Newyork   */
+SELECT COUNT(City) FROM saleperson WHERE City='Newyork';
+
+/* Question 4 -- Display the number of Saleperson belonging to London and belonging to Paris.  */
+SELECT COUNT(City) FROM saleperson WHERE City='London' OR City='Paris';
+
+/* Question 5 -- Display the number of orders taken by each Saleperson and their date of orders.  */
+SELECT Snum, COUNT(Snum) AS 'No_of_Orders' , GROUP_CONCAT(Odate) AS 'Order_Dates' FROM Orders
+GROUP BY Snum;
